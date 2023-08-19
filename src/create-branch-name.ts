@@ -2,7 +2,20 @@ import * as vscode from 'vscode'
 
 const illegalCharacters = [...'@!?#&|\\/^_$%*:']
 
-export function validateInput(value: string): boolean {
+export const createBranch = async ({ platform }: { platform: string }) => {
+  var storyType = 'feature'
+
+  const ticketId = await vscode.window.showInputBox({
+    placeHolder: `${platform} story ID`,
+    validateInput: (text) => {
+      return text !== '' && validateInput(text) ? null : `It's not a valid branch name!`
+    },
+  })
+
+  return `${storyType}/${ticketId}`.toLowerCase()
+}
+
+const validateInput = (value: string): boolean => {
   if (value === '' && value === null && value === undefined) {
     return true
   }
@@ -17,17 +30,4 @@ export function validateInput(value: string): boolean {
   })
 
   return validInput
-}
-
-export async function createBranch({ platform }: { platform: string }) {
-  var storyType = 'feature'
-
-  const ticketId = await vscode.window.showInputBox({
-    placeHolder: `${platform} story ID`,
-    validateInput: (text) => {
-      return text !== '' && validateInput(text) ? null : `It's not a valid branch name!`
-    },
-  })
-
-  return `${storyType}/${ticketId}`.toLowerCase()
 }

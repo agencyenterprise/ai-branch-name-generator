@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-export function useBranch(branchName: string) {
+export const useBranch = (branchName: string) => {
   const copyBranchName = 'Copy'
   const createBranch = 'Create'
 
