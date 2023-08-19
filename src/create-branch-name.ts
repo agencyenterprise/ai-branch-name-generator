@@ -1,36 +1,51 @@
-import * as vscode from 'vscode'
-import { fetchStory } from './get-pivotal-story'
+import { window } from 'vscode'
+import { getPivotalStory } from './application/pivotal/get-story'
+import { extensionConfig } from './extension-config'
+import { generateNameUsingChatGPT } from './prompt-chat-gpt'
 
-const illegalCharacters = [...'@!?#&|\\/^_$%*:']
-
-export const createBranch = async ({ platform }: { platform: string }) => {
-  var storyType = 'feature'
-
-  const ticketId = await vscode.window.showInputBox({
-    placeHolder: `${platform} story ID`,
+export const createBranchName = async ({ selectedPlatformLabel }: { selectedPlatformLabel: string }): Promise<string> => {
+  const inputStoryId = await window.showInputBox({
+    placeHolder: `${selectedPlatformLabel} story ID`,
     validateInput: (text) => {
-      return text !== '' && validateInput(text) ? null : `It's not a valid branch name!`
+      return text !== '' && isNaN(+text) ? `This is not a valid story id!` : null
     },
   })
 
-  const story = await fetchStory({ storyId: +ticketId! })
-
-  return `${storyType}/${ticketId}/${story?.name}`.toLowerCase()
-}
-
-const validateInput = (value: string): boolean => {
-  if (value === '' && value === null && value === undefined) {
-    return true
+  if (!inputStoryId) {
+    throw new Error(`Story ID not provided!`)
   }
 
-  var validInput = true
+  const story = await getStory({ selectedPlatformLabel, inputStoryId })
 
-  illegalCharacters.forEach((element) => {
-    if (value.includes(element)) {
-      validInput = false
-      return true
+  if (!story) {
+    throw new Error(`Story not found!`)
+  }
+
+  try {
+    const branchName = await generateNameUsingChatGPT({
+      id: story.id,
+      name: story.name,
+      type: story.type,
+    })
+
+    return branchName?.toLowerCase() || ''
+  } catch (error: any) {
+    console.log(`Error generating branch name using ChatGPT`, error)
+    throw new Error(error.message)
+  }
+}
+
+const getStory = async ({ selectedPlatformLabel, inputStoryId }: { selectedPlatformLabel: string; inputStoryId: string }) => {
+  try {
+    switch (selectedPlatformLabel) {
+      case extensionConfig.platforms.pivotal.label:
+        return getPivotalStory({ storyId: +inputStoryId })
+      default:
+        throw new Error(`Platform "${selectedPlatformLabel}" not supported!`)
     }
-  })
+  } catch (error: any) {
+    console.log(`Error getting "${selectedPlatformLabel}" story ID "${inputStoryId}"`, error)
 
-  return validInput
+    throw new Error(error.message)
+  }
 }

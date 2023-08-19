@@ -1,24 +1,31 @@
-import * as vscode from 'vscode'
-import { createBranch as createBranchName } from './create-branch-name'
-import { useBranch } from './use-branch'
-
-const platforms = {
-  pivotal: 'Pivotal',
-}
+import { window } from 'vscode'
+import { createBranchName } from './create-branch-name'
+import { extensionConfig } from './extension-config'
+import { useBranchName } from './use-branch-name'
 
 export const showUserPrompt = async () => {
-  const quickPick = vscode.window.createQuickPick()
+  if (extensionConfig.defaultPlatform) {
+    return promptUserForBranchCreation({ selectedPlatformLabel: extensionConfig.defaultPlatform })
+  }
 
-  quickPick.items = Object.values(platforms).map((platform) => ({ label: platform }))
+  showPromptForPlatformSelection()
+}
+
+const promptUserForBranchCreation = async ({ selectedPlatformLabel }: { selectedPlatformLabel: string }) => {
+  const branchName = await createBranchName({ selectedPlatformLabel })
+
+  useBranchName(branchName)
+}
+
+const showPromptForPlatformSelection = () => {
+  const quickPick = window.createQuickPick()
+
+  quickPick.items = Object.values(extensionConfig.platforms).map((platform) => ({ label: platform.label }))
 
   quickPick.onDidChangeSelection(async (selection) => {
-    const selectedLabel = selection[0].label
+    const selectedPlatformLabel = selection[0].label
 
-    if (selectedLabel === platforms.pivotal) {
-      const branchName = await createBranchName({ platform: platforms.pivotal })
-
-      useBranch(branchName)
-    }
+    promptUserForBranchCreation({ selectedPlatformLabel })
   })
 
   quickPick.onDidHide(() => quickPick.dispose())
