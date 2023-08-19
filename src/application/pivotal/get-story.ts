@@ -17,8 +17,6 @@ const getPivotalStoryById: GetStoryAdapters['getPlatformStoryById'] = async ({ s
     timeout: 5000,
   }
 
-  console.log(`aaaaaaa`, `${pivotalStoriesApiUrl}/${storyId}`)
-
   const response: AxiosResponse<PivotalAPIStory> = await axios.get(`${pivotalStoriesApiUrl}/${storyId}`, axiosRequestConfig)
 
   if (response.status === 200) {
