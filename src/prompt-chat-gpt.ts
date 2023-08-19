@@ -8,7 +8,7 @@ const openai = new OpenAI({
 
 const getContentPrompt = ({ type, id, name }: StoryEntity) =>
   `Given the id number ${id}, the story name: ${name}, the story type: ${type}, 
-  and the template for a new feature branch name: "story-type/story-id/story-name", 
+  and the template for a new feature branch name: "type/id/name-following-rules", 
   create a branch name not using any special characters from the name, but considering the entire name as the context.
   Return the branch name in lowercase. It needs to be a valid git branch name. Separate all words with a dash.`
 
