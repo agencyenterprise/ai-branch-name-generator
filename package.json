@@ -17,7 +17,22 @@
         "command": "branching-ia.branch-it",
         "title": "Branch It!"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Branching IA",
+      "properties": {
+        "branching-ia.apiToken": {
+          "type": "string",
+          "default": "",
+          "description": "API Token for Pivotal"
+        },
+        "branching-ia.projectId": {
+          "type": "string",
+          "default": "",
+          "description": "Project Id for Pivotal"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
@@ -41,5 +56,8 @@
     "mocha": "^10.2.0",
     "prettier": "^3.0.2",
     "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "axios": "^1.4.0"
   }
 }

@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { fetchStory } from './get-pivotal-story'
 
 const illegalCharacters = [...'@!?#&|\\/^_$%*:']
 
@@ -12,7 +13,9 @@ export const createBranch = async ({ platform }: { platform: string }) => {
     },
   })
 
-  return `${storyType}/${ticketId}`.toLowerCase()
+  const story = await fetchStory({ storyId: +ticketId! })
+
+  return `${storyType}/${ticketId}/${story?.name}`.toLowerCase()
 }
 
 const validateInput = (value: string): boolean => {
