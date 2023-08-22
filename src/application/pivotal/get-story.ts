@@ -11,6 +11,7 @@ export const getPivotalStory = async ({ storyId }: GetStoryUseCaseIn): GetStoryU
 const getPivotalStoryById: GetStoryAdapters['getPlatformStoryById'] = async ({ storyId }) => {
   const axiosRequestConfig: AxiosRequestConfig = {
     headers: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       'X-TrackerToken': extensionConfig.platforms.pivotal.apiToken,
     },
     timeout: 5000,
