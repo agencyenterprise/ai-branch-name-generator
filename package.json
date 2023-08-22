@@ -1,8 +1,8 @@
 {
   "name": "branching-ia",
-  "displayName": "branching-ia",
-  "description": "",
-  "version": "0.0.1",
+  "displayName": "Branching IA",
+  "description": "Create branch names using Chat GPT",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.81.0"
   },
