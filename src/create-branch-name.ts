@@ -22,13 +22,13 @@ export const createBranchName = async ({ selectedPlatformLabel }: { selectedPlat
   }
 
   try {
-    const branchName = await generateNameUsingChatGPT({
-      id: story.id,
-      name: story.name,
-      type: story.type,
-    })
+    const branchName = await generateNameUsingChatGPT(story)
 
-    return branchName?.toLowerCase() || ''
+    if (!branchName) {
+      throw new Error(`Branch name not generated!`)
+    }
+
+    return branchName
   } catch (error: any) {
     console.log(`Error generating branch name using ChatGPT`, error)
     throw new Error(error.message)
