@@ -18,31 +18,42 @@
         "title": "Branch It!"
       }
     ],
-    "configuration": {
-      "title": "Branching IA",
-      "properties": {
-        "branching-ia.defaultPlatform": {
-          "type": "string",
-          "default": "",
-          "description": "Default platform to be used when creating a branch"
-        },
-        "branching-ia.pivotalAPIToken": {
-          "type": "string",
-          "default": "",
-          "description": "API Token for Pivotal"
-        },
-        "branching-ia.pivotalProjectId": {
-          "type": "string",
-          "default": "",
-          "description": "Project Id for Pivotal"
-        },
-        "branching-ia.openAiKey": {
-          "type": "string",
-          "default": "",
-          "description": "API Key for OpenAI. Make sure you have a paid account before creating a key."
+    "configuration": [
+      {
+        "title": "General",
+        "properties": {
+          "branching-ia.defaultPlatform": {
+            "type": "string",
+            "default": "",
+            "description": "Default platform to be used when creating a branch",
+            "scope": "General"
+          },
+          "branching-ia.openAiKey": {
+            "type": "string",
+            "default": "",
+            "description": "API Key for OpenAI. Make sure you have a paid account before creating a key.",
+            "scope": "General"
+          }
+        }
+      },
+      {
+        "title": "Pivotal",
+        "properties": {
+          "branching-ia.pivotalAPIToken": {
+            "type": "string",
+            "default": "",
+            "description": "API Token for Pivotal",
+            "scope": "Pivotal"
+          },
+          "branching-ia.pivotalProjectId": {
+            "type": "string",
+            "default": "",
+            "description": "Project Id for Pivotal",
+            "scope": "Pivotal"
+          }
         }
       }
-    }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

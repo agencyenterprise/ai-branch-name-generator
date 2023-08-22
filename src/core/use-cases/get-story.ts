@@ -1,8 +1,8 @@
 import { StoryEntity } from '../entities/story'
 
 export type GetStoryUseCaseIn = { storyId: number }
-export type GetStoryUseCaseOut = Promise<StoryEntity>
-export type GetStoryAdapters = { getPlatformStoryById: ({ storyId }: { storyId: number }) => Promise<StoryEntity> }
+export type GetStoryUseCaseOut = Promise<StoryEntity | undefined>
+export type GetStoryAdapters = { getPlatformStoryById: ({ storyId }: { storyId: number }) => Promise<StoryEntity | undefined> }
 
 export const getStory = async ({
   useCaseIn,

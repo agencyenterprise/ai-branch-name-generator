@@ -12,9 +12,13 @@ export const showUserPrompt = async () => {
 }
 
 const promptUserForBranchCreation = async ({ selectedPlatformLabel }: { selectedPlatformLabel: string }) => {
-  const branchName = await createBranchName({ selectedPlatformLabel })
+  try {
+    const branchName = await createBranchName({ selectedPlatformLabel })
 
-  useBranchName(branchName)
+    useBranchName(branchName)
+  } catch (error: any) {
+    window.showInformationMessage(error.message)
+  }
 }
 
 const showPromptForPlatformSelection = () => {

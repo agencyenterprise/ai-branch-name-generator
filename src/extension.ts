@@ -1,10 +1,10 @@
-import * as vscode from 'vscode'
+import { ExtensionContext, commands } from 'vscode'
 import { showUserPrompt } from './show-user-prompt'
 
 const vsCodeExtensionCommand = 'branching-ia.branch-it'
 
-export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand(vsCodeExtensionCommand, () => {
+export function activate(context: ExtensionContext) {
+  const disposable = commands.registerCommand(vsCodeExtensionCommand, () => {
     showUserPrompt()
   })
 

@@ -1,12 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { StoryEntity } from '../../core/entities/story'
-import { GetStoryAdapters, GetStoryUseCaseIn, getStory } from '../../core/use-cases/get-story'
+import { GetStoryAdapters, GetStoryUseCaseIn, GetStoryUseCaseOut, getStory } from '../../core/use-cases/get-story'
 import { extensionConfig } from '../../extension-config'
 import { PivotalAPIStory } from './pivotal-api-story'
 
 const pivotalStoriesApiUrl = `https://www.pivotaltracker.com/services/v5/projects/${extensionConfig.platforms.pivotal.projectId}/stories`
 
-export const getPivotalStory = async ({ storyId }: GetStoryUseCaseIn): Promise<StoryEntity> =>
+export const getPivotalStory = async ({ storyId }: GetStoryUseCaseIn): GetStoryUseCaseOut =>
   getStory({ useCaseIn: { storyId }, adapters: { getPlatformStoryById: getPivotalStoryById } })
 
 const getPivotalStoryById: GetStoryAdapters['getPlatformStoryById'] = async ({ storyId }) => {
@@ -17,13 +16,17 @@ const getPivotalStoryById: GetStoryAdapters['getPlatformStoryById'] = async ({ s
     timeout: 5000,
   }
 
-  const response: AxiosResponse<PivotalAPIStory> = await axios.get(`${pivotalStoriesApiUrl}/${storyId}`, axiosRequestConfig)
+  try {
+    const response: AxiosResponse<PivotalAPIStory> = await axios.get(`${pivotalStoriesApiUrl}/${storyId}`, axiosRequestConfig)
 
-  if (response.status === 200) {
-    const pivotalStory = response.data
+    if (response.status === 200) {
+      const pivotalStory = response.data
 
-    return { name: pivotalStory.name, id: pivotalStory.id, type: pivotalStory.story_type }
+      return { name: pivotalStory.name, id: pivotalStory.id, type: pivotalStory.story_type }
+    }
+
+    throw new Error(`Error: ${response.status} - ${response.statusText}`)
+  } catch (error: any) {
+    throw new Error(`Error getting Pivotal story ID "${storyId}": ${error.message}`)
   }
-
-  throw new Error(`Error: ${response.status} - ${response.statusText}`)
 }
