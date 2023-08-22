@@ -1,7 +1,7 @@
 import { env, extensions, window } from 'vscode'
 
 export const useBranchName = (branchName: string) => {
-  const gitExtension = extensions.getExtension('git')?.exports
+  const gitExtension = extensions.getExtension('vscode.git')?.exports
   const areThereGitRepositories = gitExtension?.getAPI(1).repositories.length > 0
   const copyBranchNameLabel = 'Copy'
   const createBranchLabel = 'Create'
