@@ -30,8 +30,7 @@ export const createBranchName = async ({ selectedPlatformLabel }: { selectedPlat
 
     return branchName
   } catch (error: any) {
-    console.log(`Error generating branch name using ChatGPT`, error)
-    throw new Error(error.message)
+    throw new Error(`Error generating branch name using ChatGPT: ${error.message}`)
   }
 }
 
@@ -44,8 +43,6 @@ const getStory = async ({ selectedPlatformLabel, inputStoryId }: { selectedPlatf
         throw new Error(`Platform "${selectedPlatformLabel}" not supported!`)
     }
   } catch (error: any) {
-    console.log(`Error getting "${selectedPlatformLabel}" story ID "${inputStoryId}"`, error)
-
-    throw new Error(error.message)
+    throw new Error(`Error getting "${selectedPlatformLabel}" story ID "${inputStoryId}": ${error.message}`)
   }
 }
