@@ -3,6 +3,10 @@
   "displayName": "Branching IA",
   "description": "Create branch names using Chat GPT",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/agencyenterprise/branching-ia.git"
+  },
   "engines": {
     "vscode": "^1.81.0"
   },
@@ -61,7 +65,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
@@ -71,6 +76,7 @@
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
     "@vscode/test-electron": "^2.3.2",
+    "@vscode/vsce": "^2.20.1",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^9.0.0",
     "glob": "^8.1.0",
