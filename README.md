@@ -1,4 +1,4 @@
-# branching-ia README
+# ai-branch-name-generator README
 
 This extension creates branch names based on the story name using Chat GPT.
 
@@ -15,10 +15,10 @@ Use the command `Branch It!` to start generating. It's possible to either copy t
 
 This extension contributes the following settings:
 
-- `branching-ia.defaultPlatform`: Default platform to be used when creating a branch.
-- `branching-ia.pivotalAPIToken`: API Token for Pivotal.
-- `branching-ia.pivotalProjectId`: Project Id for Pivotal.
-- `branching-ia.openAiKey`: API Key for OpenAI. Make sure you have a paid account before creating a key.
+- `ai-branch-name-generator.defaultPlatform`: Default platform to be used when creating a branch.
+- `ai-branch-name-generator.pivotalAPIToken`: API Token for Pivotal.
+- `ai-branch-name-generator.pivotalProjectId`: Project Id for Pivotal.
+- `ai-branch-name-generator.openAiKey`: API Key for OpenAI. Make sure you have a paid account before creating a key.
 
 ## Release Notes
 

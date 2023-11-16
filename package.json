@@ -1,11 +1,11 @@
 {
-  "name": "branching-ia",
-  "displayName": "Branching IA",
+  "name": "ai-branch-name-generator",
+  "displayName": "AI Branch Name Generator",
   "description": "Create branch names using Chat GPT",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/agencyenterprise/branching-ia.git"
+    "url": "git://github.com/agencyenterprise/ai-branch-name-generator.git"
   },
   "engines": {
     "vscode": "^1.81.0"
@@ -18,7 +18,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "branching-ia.branch-it",
+        "command": "ai-branch-name-generator.branch-it",
         "title": "Branch It!"
       }
     ],
@@ -26,13 +26,13 @@
       {
         "title": "General",
         "properties": {
-          "branching-ia.defaultPlatform": {
+          "ai-branch-name-generator.defaultPlatform": {
             "type": "string",
             "default": "",
             "description": "Default platform to be used when creating a branch",
             "scope": "General"
           },
-          "branching-ia.openAiKey": {
+          "ai-branch-name-generator.openAiKey": {
             "type": "string",
             "default": "",
             "description": "API Key for OpenAI. Make sure you have a paid account before creating a key.",
@@ -43,13 +43,13 @@
       {
         "title": "Pivotal",
         "properties": {
-          "branching-ia.pivotalAPIToken": {
+          "ai-branch-name-generator.pivotalAPIToken": {
             "type": "string",
             "default": "",
             "description": "API Token for Pivotal",
             "scope": "Pivotal"
           },
-          "branching-ia.pivotalProjectId": {
+          "ai-branch-name-generator.pivotalProjectId": {
             "type": "string",
             "default": "",
             "description": "Project Id for Pivotal",

@@ -1,7 +1,7 @@
 import { ExtensionContext, commands } from 'vscode'
 import { showUserPrompt } from './show-user-prompt'
 
-const vsCodeExtensionCommand = 'branching-ia.branch-it'
+const vsCodeExtensionCommand = 'ai-branch-name-generator.branch-it'
 
 export function activate(context: ExtensionContext) {
   const disposable = commands.registerCommand(vsCodeExtensionCommand, () => {

@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "branching-ia" extension will be documented in this file.
+All notable changes to the "ai-branch-name-generator" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 

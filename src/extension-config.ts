@@ -13,16 +13,16 @@ type Config = {
 }
 
 export const extensionConfig: Config = {
-  defaultPlatform: vscode.workspace.getConfiguration().get('branching-ia.defaultPlatform') as string,
+  defaultPlatform: vscode.workspace.getConfiguration().get('ai-branch-name-generator.defaultPlatform') as string,
   platforms: {
     pivotal: {
       label: 'Pivotal',
-      apiToken: vscode.workspace.getConfiguration().get('branching-ia.pivotalAPIToken') as string,
-      projectId: vscode.workspace.getConfiguration().get('branching-ia.pivotalProjectId') as string,
+      apiToken: vscode.workspace.getConfiguration().get('ai-branch-name-generator.pivotalAPIToken') as string,
+      projectId: vscode.workspace.getConfiguration().get('ai-branch-name-generator.pivotalProjectId') as string,
     },
   },
   openAI: {
-    apiKey: vscode.workspace.getConfiguration().get('branching-ia.openAiKey') as string,
+    apiKey: vscode.workspace.getConfiguration().get('ai-branch-name-generator.openAiKey') as string,
     role: 'user',
     model: 'gpt-3.5-turbo',
   },
