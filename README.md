@@ -1,4 +1,4 @@
-# ai-branch-name-generator README
+# AI Branch Name Generator
 
 This extension creates branch names based on the story name using Chat GPT.
 
@@ -37,3 +37,7 @@ You can add new configurations to the `extension-config` file.
 ### 1.0.0
 
 Initial release of the branching AI extension.
+
+## Thanks to
+
+- [Made with ❤️ by AE Studio ](https://ae.studio)
