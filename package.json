@@ -3,7 +3,7 @@
   "displayName": "AI Branch Name Generator",
   "description": "Create branch names using Chat GPT",
   "publisher": "AgencyEnterprise",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/agencyenterprise/ai-branch-name-generator.git"

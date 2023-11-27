@@ -41,3 +41,4 @@ Initial release of the branching AI extension.
 ## Thanks to
 
 - [Made with ❤️ by AE Studio ](https://ae.studio)
+- [Icon made by Freepik](https://www.freepik.com)
