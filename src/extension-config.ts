@@ -8,12 +8,19 @@ type OpenAI = { apiKey: string; role: CreateChatCompletionRequestMessage['role']
 
 type Config = {
   defaultPlatform: string
+  branchNameTemplate?: string
+  extraPromptSuggestions?: string[]
   platforms: { pivotal: PivotalPlatform }
   openAI: OpenAI
 }
 
+const branchNameTemplate = 'the-story-type/the-story-id/use-the-story-name-following-the-prompt-rules'
+
 export const extensionConfig: Config = {
   defaultPlatform: vscode.workspace.getConfiguration().get('ai-branch-name-generator.defaultPlatform') as string,
+  branchNameTemplate:
+    (vscode.workspace.getConfiguration().get('ai-branch-name-generator.branchNameTemplate') as string) || branchNameTemplate,
+  extraPromptSuggestions: vscode.workspace.getConfiguration().get('ai-branch-name-generator.extraPromptSuggestions') as string[],
   platforms: {
     pivotal: {
       label: 'Pivotal',

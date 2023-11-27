@@ -9,15 +9,16 @@ const openai = new OpenAI({
 const getContentPrompt = ({ type, id, name }: StoryEntity) =>
   [
     `Given the id number ${id}, the story name: ${name}, the story type: ${type}.`,
-    `Use the following template: "type/id/name-following-rules", e.g.: "feature/123/branch-name".`,
-    `Create a branch name using only the special characters from the template.`,
-    `Consider the entire name as the context.`,
-    `Return the branch name in lowercase.`,
+    `Respect the following template when creating the branch name: "${extensionConfig.branchNameTemplate}"`,
+    `Create a branch name using only the special characters from the template. Sanitize any other special characters.`,
+    `Consider the entire story name as the context.`,
+    `The branch name must be in lowercase.`,
     `It needs to be a valid GitHub branch name.`,
     `Separate all words with a dash, respecting the slashes from the template.`,
     `Make the story name part below 60 chars.`,
     `Abbreviate words if needed.`,
     `Just answer with the branch name.`,
+    ...(extensionConfig.extraPromptSuggestions ?? []),
   ].join('\n')
 
 export const generateNameUsingChatGPT = async (story: StoryEntity): Promise<string | null> => {

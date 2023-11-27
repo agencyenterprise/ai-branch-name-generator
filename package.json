@@ -18,8 +18,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "ai-branch-name-generator.branch-it",
-        "title": "Branch It!"
+        "command": "ai-branch-name-generator.generate-branch-name",
+        "title": "Generate Branch Name"
       }
     ],
     "configuration": [
@@ -31,6 +31,16 @@
             "default": "",
             "description": "Default platform to be used when creating a branch",
             "scope": "General"
+          },
+          "ai-branch-name-generator.branchNameTemplate": {
+            "type": "string",
+            "default": "the-story-type/the-story-id/use-the-story-name-following-the-prompt-rules",
+            "description": "Template for generating the branch name"
+          },
+          "ai-branch-name-generator.extraPromptSuggestions": {
+            "type": "array",
+            "default": [],
+            "description": "Extra AI prompt suggestions for branch name generator"
           },
           "ai-branch-name-generator.openAiKey": {
             "type": "string",
