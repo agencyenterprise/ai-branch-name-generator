@@ -2,8 +2,8 @@
   "name": "ai-branch-name-generator",
   "displayName": "AI Branch Name Generator",
   "description": "Create branch names using Chat GPT",
-  "publisher": "AgencyEnterprise",
-  "version": "1.0.1",
+  "publisher": "wgrisa",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/agencyenterprise/ai-branch-name-generator.git"
@@ -85,7 +85,10 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "yarn run compile",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
@@ -103,6 +106,7 @@
     "@typescript-eslint/parser": "^5.59.8",
     "@vscode/test-electron": "^2.3.2",
     "@vscode/vsce": "^2.20.1",
+    "esbuild": "^0.19.8",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^9.0.0",
     "glob": "^8.1.0",
